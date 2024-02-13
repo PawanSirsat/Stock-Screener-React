@@ -1,5 +1,4 @@
-// src/Components/Pages/Price.tsx
-import React, { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import axios from 'axios'
 import { useParams } from 'react-router-dom'
 
@@ -7,16 +6,12 @@ interface TimeSeriesData {
   '4. close': string
 }
 
-interface PriceProps {
-  symbol: string // Add symbol prop to accept the stock symbol
-}
-
 const Price = () => {
   const { symbol } = useParams()
   const [stockPrice, setStockPrice] = useState<string | null>(null)
   const [error, setError] = useState<string>('')
 
-  console.log(symbol)
+  console.log('Called')
   const apiKey = 'YOUR_ALPHA_VANTAGE_API_KEY'
 
   useEffect(() => {
