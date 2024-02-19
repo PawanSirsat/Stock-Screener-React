@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 interface SearchResult {
   ticker: string
@@ -10,7 +10,7 @@ interface SearchResult {
 }
 
 const Search: React.FC = () => {
-  const [stockName, setStockName] = useState<string>('amzn') // Set default value to 'amzn'
+  const [stockName, setStockName] = useState<string>('') // Set default value to 'amzn'
   const navigate = useNavigate()
 
   const [searchResults, setSearchResults] = useState<SearchResult[]>([])
@@ -33,7 +33,7 @@ const Search: React.FC = () => {
       }
     }
 
-    if (stockName && stockName != 'amzn') {
+    if (stockName) {
       fetchSuggestions()
       setShowSuggestions(true)
     } else {
@@ -41,9 +41,8 @@ const Search: React.FC = () => {
     }
   }, [stockName])
 
-  const handleSelectSuggestion = (selectedTicker: string) => {
+  const handleSelectSuggestion = () => {
     setShowSuggestions(false)
-    navigate(`/price/${selectedTicker}`)
   }
 
   return (
@@ -62,7 +61,7 @@ const Search: React.FC = () => {
                 stroke='currentColor'
                 stroke-linecap='round'
                 stroke-linejoin='round'
-                stroke-width='2'
+                strokeWidth='2'
                 d='m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z'
               />
             </svg>
@@ -83,10 +82,12 @@ const Search: React.FC = () => {
             {searchResults.map((result) => (
               <li
                 key={result.ticker}
-                onClick={() => handleSelectSuggestion(result.ticker)}
+                onClick={() => handleSelectSuggestion()}
                 className='px-4 py-2 cursor-pointer hover:bg-black'
               >
-                {result.ticker} - {result.company_name}
+                <Link to={`/price/${result.ticker}`}>
+                  {result.ticker} - {result.company_name}{' '}
+                </Link>
               </li>
             ))}
           </ul>

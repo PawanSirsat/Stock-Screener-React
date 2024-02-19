@@ -9,8 +9,8 @@ function App() {
     <Router>
       <Navbar />
       <Routes>
-        <Route path='/price/:symbol' element={<Price />} />
         <Route path='/' element={<Home />} />
+        <Route path='/price/:symbol' element={<Price />} />
       </Routes>
     </Router>
   )

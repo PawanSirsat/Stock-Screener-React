@@ -11,7 +11,7 @@ const Price = () => {
   const [stockPrice, setStockPrice] = useState<string | null>(null)
   const [error, setError] = useState<string>('')
 
-  console.log('Called')
+  console.log(symbol)
   const apiKey = 'YOUR_ALPHA_VANTAGE_API_KEY'
 
   useEffect(() => {
@@ -20,6 +20,8 @@ const Price = () => {
         const response = await axios.get(
           `https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=${symbol}&interval=5min&apikey=${apiKey}`
         )
+
+        console.log(response)
 
         // Extracting the latest data point from the time series
         const timeSeries = response.data['Time Series (5min)']
