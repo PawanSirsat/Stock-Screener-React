@@ -46,7 +46,7 @@ const Search: React.FC = () => {
   }
 
   return (
-    <div className='relative mr-2'>
+    <div className='relative mr-2 z-10'>
       <div className='flex md:order-2'>
         <div className='relative md:block ml-2'>
           <div className='absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none'>
@@ -82,10 +82,13 @@ const Search: React.FC = () => {
             {searchResults.map((result) => (
               <li
                 key={result.ticker}
-                onClick={() => handleSelectSuggestion()}
-                className='px-4 py-2 cursor-pointer hover:bg-black'
+                className='px-4 py-2 cursor-pointer hover:bg-gray-100'
+                onClick={() => handleSelectSuggestion(result.ticker)}
               >
-                <Link to={`/price/${result.ticker}`}>
+                <Link
+                  to={`/price/${result.ticker}`}
+                  className='block w-full h-full'
+                >
                   {result.ticker} - {result.company_name}{' '}
                 </Link>
               </li>
