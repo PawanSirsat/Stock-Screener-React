@@ -1,5 +1,11 @@
 import { useEffect } from 'react'
 
+declare global {
+  interface Window {
+    TradingView: any
+  }
+}
+
 const HomePage = () => {
   useEffect(() => {
     const script = document.createElement('script')

@@ -5,7 +5,11 @@ import { useParams } from 'react-router-dom'
 interface TimeSeriesData {
   '4. close': string
 }
-
+declare global {
+  interface Window {
+    TradingView: any
+  }
+}
 const Price = () => {
   const { symbol } = useParams()
   const [stockPrice, setStockPrice] = useState<string | null>(null)

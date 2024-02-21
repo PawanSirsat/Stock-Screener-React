@@ -1,11 +1,8 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import Search from '../Pages/Search' // Import the updated Search component
-import { useNavigate } from 'react-router-dom'
 
 const Navbar: React.FC = () => {
-  const navigation = useNavigate()
-
   return (
     <nav className='bg-white border-gray-200 dark:bg-gray-900'>
       <div className='max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4'>
