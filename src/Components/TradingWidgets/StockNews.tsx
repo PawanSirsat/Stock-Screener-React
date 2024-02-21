@@ -7,11 +7,11 @@ const StockNews: React.FC = () => {
       'https://s3.tradingview.com/external-embedding/embed-widget-timeline.js'
     script.async = true
     script.innerHTML = JSON.stringify({
-      feedMode: 'all_symbols',
+      feedMode: 'BSE_symbols',
       isTransparent: false,
       displayMode: 'regular',
       width: '100%',
-      height: 600,
+      height: 625,
       colorTheme: 'dark',
       locale: 'en',
     })
@@ -37,7 +37,11 @@ const StockNews: React.FC = () => {
     <div className='tradingview-widget-container'>
       <div
         id='timeline-container'
-        className='tradingview-widget-container__widget'
+        className='tradingview-widget-container__widget end-0'
+        style={{
+          width: '50%',
+          position: 'absolute',
+        }}
       ></div>
       <div className='tradingview-widget-copyright'>
         <a

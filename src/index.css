@@ -1,3 +1,34 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+body {
+ background-color: #1f293f;
+ /* Dark color code */
+}
+
+/* Ensure proper layout for side-by-side components */
+.side-by-side-container {
+ display: flex;
+ flex-direction: row;
+}
+
+.StockNews,
+.HotlistsWidget {
+ width: 100%;
+ /* Each component takes up 50% of the width */
+}
+
+/* Responsive adjustments */
+@media screen and (max-width: 768px) {
+ .side-by-side-container {
+  flex-direction: column;
+  /* Stack components vertically on smaller screens */
+ }
+
+ .StockNews,
+ .HotlistsWidget {
+  width: 100%;
+  /* Each component takes up full width on smaller screens */
+ }
+}

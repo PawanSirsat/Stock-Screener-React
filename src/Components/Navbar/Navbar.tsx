@@ -12,7 +12,7 @@ const Navbar: React.FC = () => {
           <Link to='/' className='text-white hover:text-gray-300'>
             Home
           </Link>
-          <Link to='/price' className='text-white hover:text-gray-300'>
+          <Link to='/techchart' className='text-white hover:text-gray-300'>
             Stock Screener
           </Link>
           <Link to='/contact' className='text-white hover:text-gray-300'>

@@ -1,60 +1,54 @@
-import { useEffect, useRef } from 'react'
+import React, { useEffect } from 'react'
 
-function TechnicalChart() {
-  const container = useRef<HTMLDivElement>(null)
-
+const TechnicalChart: React.FC = () => {
   useEffect(() => {
     const script = document.createElement('script')
-    script.src =
-      'https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js'
+    script.src = 'https://s3.tradingview.com/tv.js'
     script.type = 'text/javascript'
-    script.async = true
-    script.innerHTML = `
-      {
-        "container_id": "analytics-platform-chart-demo",
-        "width": "100%",
-        "height": "100%",
-        "autosize": true,
-        "symbol": "NASDAQ:AAPL",
-        "interval": "D",
-        "timezone": "exchange",
-        "theme": "light",
-        "style": "0",
-        "withdateranges": true,
-        "allow_symbol_change": true,
-        "save_image": false,
-        "details": true,
-        "hotlist": true,
-        "calendar": true
-      }`
-    container.current?.appendChild(script)
+
+    script.onload = () => {
+      new (window as any).TradingView.widget({
+        container_id: 'technical-analysis-chart-demo',
+
+        autosize: true,
+        symbol: 'AAPL',
+        interval: 'D',
+        timezone: 'exchange',
+        theme: 'dark',
+        style: '1',
+        withdateranges: true,
+        hide_side_toolbar: false,
+        allow_symbol_change: true,
+        save_image: false,
+        studies: ['StochasticRSI@tv-basicstudies', 'MASimple@tv-basicstudies'],
+
+        support_host: 'https://www.tradingview.com',
+        locale: 'en',
+      })
+    }
+
+    document.body.appendChild(script)
 
     return () => {
-      // Cleanup function to remove the script element
-      if (container.current && script.parentNode === container.current) {
-        container.current.removeChild(script)
-      }
+      document.body.removeChild(script)
     }
   }, [])
 
   return (
     <div
       className='tradingview-widget-container'
-      ref={container}
       style={{ height: '100%', width: '100%' }}
     >
       <div
-        className='tradingview-widget-container__widget'
-        style={{ height: 'calc(100% - 32px)', width: '100%' }}
+        id='technical-analysis-chart-demo'
+        style={{ height: '90%', width: '100%', position: 'absolute' }}
       ></div>
       <div className='tradingview-widget-copyright'>
         <a
           href='https://www.tradingview.com/'
           rel='noopener nofollow'
           target='_blank'
-        >
-          <span className='blue-text'>Track all markets on TradingView</span>
-        </a>
+        ></a>
       </div>
     </div>
   )
