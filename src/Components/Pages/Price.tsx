@@ -1,8 +1,7 @@
-import { useState, useEffect } from 'react'
+import { useEffect } from 'react'
 import axios from 'axios'
 import { useParams } from 'react-router-dom'
 import MiniChartPage from '../TradingWidgets/MiniChart'
-import StockNews from '../TradingWidgets/StockNews'
 
 interface TimeSeriesData {
   '4. close': string
@@ -10,8 +9,6 @@ interface TimeSeriesData {
 
 const Price = () => {
   const { symbol } = useParams()
-  const [stockPrice, setStockPrice] = useState<string | null>(null)
-  const [error, setError] = useState<string>('')
 
   const apiKey = 'YOUR_ALPHA_VANTAGE_API_KEY'
 
@@ -24,13 +21,7 @@ const Price = () => {
 
         const timeSeries = response.data['Time Series (5min)']
         const latestDataPoint = Object.values(timeSeries)[0] as TimeSeriesData
-
-        setStockPrice(latestDataPoint['4. close'])
-        setError('')
-      } catch (error) {
-        setStockPrice(null)
-        setError('Error fetching stock price. Please check the stock symbol.')
-      }
+      } catch (error) {}
     }
 
     fetchStockPrice()

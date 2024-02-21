@@ -1,4 +1,3 @@
-import { useEffect } from 'react'
 import StockNews from '../TradingWidgets/StockNews'
 
 declare global {
