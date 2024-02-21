@@ -58,8 +58,8 @@ const Search: React.FC = () => {
             >
               <path
                 stroke='currentColor'
-                stroke-linecap='round'
-                stroke-linejoin='round'
+                strokeLinecap='round'
+                strokeLinejoin='round'
                 strokeWidth='2'
                 d='m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z'
               />
@@ -71,17 +71,17 @@ const Search: React.FC = () => {
             placeholder='Enter stock name'
             onChange={(e) => setStockName(e.target.value)}
             id='search-navbar'
-            className='block w-full p-2 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'
+            className='block w-full p-2 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-blue-900 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'
           />
         </div>
       </div>
       {showSuggestions && searchResults.length > 0 && (
-        <div className='fixed top-15 left-6 right-50 bg-gray-500 border border-gray-300 rounded shadow-lg'>
+        <div className='fixed top-15 left-6 right-50 text-white bg-slate-900 border border-gray-300 rounded shadow-lg'>
           <ul>
             {searchResults.map((result) => (
               <li
                 key={result.ticker}
-                className='px-4 py-2 cursor-pointer hover:bg-gray-100'
+                className='px-4 py-2 cursor-pointer hover:bg-gray-500'
                 onClick={() => handleSelectSuggestion()}
               >
                 <Link
